@@ -2,8 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="User">
+	<resultMap id="resultUserVO" type="com.mia.miablog.vo.UserVO">
+		<!-- property가 자바 vo쪽 변수명 column은 db 쪽 변수 -->
+		<id property="idx" column="idx"></id>
+		<result property="user_id" column="user_id"></result>
+		<result property="email" column="email"></result>
+		<result property="user_name" column="user_name"></result>
+		<result property="user_pwd" column="user_pwd"></result>
+		<result property="reg_date" column="reg_date"></result>
+	</resultMap>
+	
 	<insert id="insert" parameterType="com.mia.miablog.vo.UserVO">
 		INSERT INTO user ( user_id, email, user_name, user_pwd, reg_date )
 			VALUES ( #{user_id}, #{email}, #{user_name}, #{user_pwd}, NOW() )
 	</insert>
+	<select id="selectList" parameterType="java.util.HashMap" resultMap="resultUserVO">
+		SELECT * FROM user LIMIT 10
+	</select>
+	<update id="update" parameterType="com.mia.miablog.vo.UserVO">
+		UPDATE user SET user_name = #{user_name} WHERE idx = #{idx}
+	</update>
+	<delete id="delete" parameterType="com.mia.miablog.vo.UserVO">
+		DELETE FROM user WHERE user_name = #{user_name}
+	</delete>
 </mapper>

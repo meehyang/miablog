@@ -1,6 +1,8 @@
 package com.mia.miablog.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -17,10 +19,27 @@ import com.mia.miablog.vo.UserVO;
  * dao - sqlsessiondaosupport - sqlsessiontemplate 는 세트 
  */
 public class UserDAO extends SqlSessionDaoSupport{
+	
+	//mybatis에게 dao들이 내가 db를 써도 될까? 하며 권한을 요청하는 역할 
+	//그래서 늘 dao에는 sessiontemplate가 붙어다닌다 
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public void insert(UserVO userVO) {
+		//xml 파일에서 추척할 경로를 알려주는 것  User->insert 
 		getSqlSession().insert("User.insert",userVO);
+	}
+	
+	public List<UserVO> selectList(){
+		Map<String, String> paramMap = new HashMap<String, String>();
+		return getSqlSession().selectList("User.selectList", paramMap);
+	}
+	
+	public void update(UserVO userVO) {
+		getSqlSession().update("User.update", userVO);
+	}
+	
+	public void delete(UserVO userVO) {
+		getSqlSession().delete("User.delete", userVO);
 	}
 	
 }
