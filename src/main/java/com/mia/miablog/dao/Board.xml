@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Board">
+	<resultMap id="resultBoardVO" type="com.mia.miablog.vo.BoardVO">
+		<id property="idx" column="idx"></id>
+		<result property="title" column="title"></result>
+		<result property="content" column="content"></result>
+		<result property="user_idx" column="user_idx"></result>
+		<result property="insert_date" column="reg_date"></result>
+	</resultMap>
+	<select id="selectList" parameterType="java.util.HashMap" resultMap="resultBoardVO">
+		SELECT * FROM board LIMIT 10
+	</select>
+	<insert id="insert" parameterType="com.mia.miablog.vo.BoardVO">
+		INSERT INTO board ( title, content, user_idx, insert_date )
+			VALUES ( #{title}, #{content}, #{user_idx}, NOW() )
+	</insert>
+	<update id="update" parameterType="com.mia.miablog.vo.BoardVO">
+		UPDATE board SET title = #{title} where idx = #{idx}
+	</update>
+	<delete id="delete" parameterType="com.mia.miablog.vo.BoardVO">
+		DELETE FROM board WHERE idx = #{idx}
+	</delete>
+</mapper>
