@@ -36,7 +36,7 @@ public class BoardDAOTest {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setTitle("게시물 제목 ");
 		boardVO.setContent("게시물 내용이 들어갑니다. 게시물 테스트...");
-		boardVO.setUser_idx(2);
+		boardVO.setUser_idx(5);
 		
 		boardDAO.insert(boardVO);
 	}
