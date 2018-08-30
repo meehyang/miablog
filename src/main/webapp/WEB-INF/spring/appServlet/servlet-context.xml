@@ -58,6 +58,7 @@
 	<beans:bean id="UserDAO" class="com.mia.miablog.dao.UserDAO">
 		<beans:property name="sqlSessionTemplate" ref="sqlSessionTemplate"></beans:property>
 	</beans:bean>
+	<beans:bean id="UserBO" class="com.mia.miablog.bo.UserBO"></beans:bean>
 	
 	<context:component-scan base-package="com.mia.miablog" />
 	
