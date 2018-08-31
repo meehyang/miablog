@@ -54,6 +54,7 @@
 		<beans:constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></beans:constructor-arg>
 	</beans:bean>
 	
+	<!-- 작성한 VO, DAO, BO 등록 -->
 	<beans:bean id="UserVO" class="com.mia.miablog.vo.UserVO"></beans:bean>
 	<beans:bean id="UserDAO" class="com.mia.miablog.dao.UserDAO">
 		<beans:property name="sqlSessionTemplate" ref="sqlSessionTemplate"></beans:property>
@@ -65,6 +66,11 @@
 		<beans:property name="sqlSessionTemplate" ref="sqlSessionTemplate"></beans:property>
 	</beans:bean>
 	<beans:bean id="BoardBO" class="com.mia.miablog.bo.BoardBO"></beans:bean>
+	
+	<beans:bean id="AttachfileDAO" class="com.mia.miablog.dao.AttachfileDAO">
+		<beans:property name="sqlSessionTemplate" ref="sqlSessionTemplate"></beans:property>
+	</beans:bean>
+	<beans:bean id="AttachfileBO" class="com.mia.miablog.bo.AttachfileBO"></beans:bean>
 	
 	<context:component-scan base-package="com.mia.miablog" />
 	
