@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Attachfile">
+	<resultMap type="com.mia.miablog.vo.AttachfileVO" id="resultAttachfileVO">
+		<id property="idx" column="idx"></id>
+		<result property="attach_file" column="attach_file"></result>
+		<result property="attach_file_org" column="attach_file_org"></result>
+		<result property="board_idx" column="board_idx"></result>
+	</resultMap>
+	<select id="selectList" parameterType="java.util.HashMap" resultMap="resultAttachfileVO">
+		SELECT * FROM attach_file
+	</select>
+	<insert id="insert" parameterType="com.mia.miablog.vo.AttachfileVO">
+		INSERT INTO attach_file (attach_file, attach_file_org, board_idx)  
+		VALUES (#{attach_file}, #{attach_file_org}, #{board_idx})
+	</insert>
+	<update id="update" parameterType="com.mia.miablog.vo.AttachfileVO">
+		UPDATE attach_file SET attach_file = #{attach_file} where idx = #{idx}
+	</update>
+	<delete id="delete" parameterType="com.mia.miablog.vo.AttachfileVO">
+		DELETE FROM attach_file WHERE idx = #{idx}	
+	</delete>
+</mapper>
