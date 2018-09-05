@@ -18,6 +18,7 @@
 	<resources mapping="/images/**" location="/resources/images/" />
 	<resources mapping="/js/**" location="/resources/js/" />
 	<resources mapping="/sass/**" location="/resources/sass/" />
+	<resources mapping="/admin/**" location="/resources/admin/" />
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
@@ -73,5 +74,4 @@
 	<beans:bean id="AttachfileBO" class="com.mia.miablog.bo.AttachfileBO"></beans:bean>
 	
 	<context:component-scan base-package="com.mia.miablog" />
-	
 </beans:beans>
