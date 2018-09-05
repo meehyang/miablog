@@ -11,18 +11,20 @@
 		<result property="user_pwd" column="user_pwd"></result>
 		<result property="reg_date" column="reg_date"></result>
 	</resultMap>
-	
 	<insert id="insert" parameterType="com.mia.miablog.vo.UserVO">
 		INSERT INTO user ( user_id, email, user_name, user_pwd, reg_date )
 			VALUES ( #{user_id}, #{email}, #{user_name}, #{user_pwd}, NOW() )
 	</insert>
 	<select id="selectList" parameterType="java.util.HashMap" resultMap="resultUserVO">
-		SELECT * FROM user LIMIT 10
+		SELECT * FROM user
 	</select>
 	<update id="update" parameterType="com.mia.miablog.vo.UserVO">
-		UPDATE user SET user_name = #{user_name} WHERE idx = #{idx}
+		UPDATE user SET user_name = #{user_name}, user_pwd = #{user_pwd}, email=#{email}  WHERE idx = #{idx}
 	</update>
 	<delete id="delete" parameterType="com.mia.miablog.vo.UserVO">
-		DELETE FROM user WHERE user_name = #{user_name}
+		DELETE FROM user WHERE idx = #{idx}
 	</delete>
+	<select id="select" parameterType="com.mia.miablog.vo.UserVO" resultMap="resultUserVO">
+		SELECT * FROM user WHERE idx = #{idx}
+	</select>
 </mapper>
