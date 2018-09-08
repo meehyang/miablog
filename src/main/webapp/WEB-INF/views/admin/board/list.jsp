@@ -76,8 +76,8 @@
 	                                        <td><a href="../board/view?idx=${boardVO.idx}">${boardVO.idx}</a></td>
 	                                        <td>${boardVO.title}</td>
 	                                        <td>${boardVO.content}</td>
-	                                        <td class="center">${boardVO.user_name}</td>
-	                                        <td class="center">${boardVO.insert_date}</td>
+	                                        <td class="center">${boardVO.userName}</td>
+	                                        <td class="center">${boardVO.insertDate}</td>
 	                                    </tr>
                                 	</c:forEach>
                                 </tbody>

@@ -41,7 +41,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">${userView.user_name}의 상세정보 
+                    <h1 class="page-header">${userView.userName}의 상세정보 
 	                    <a class="btn btn-default" href="../user/list">이전</a>
 	                    <a class="btn btn-danger" href="../user/delete?idx=${userView.idx }">삭제</a>
 	                    <a class="btn btn-info" href="../user/edit?idx=${userView.idx }">정보수정</a>
@@ -62,13 +62,13 @@
                                     <form role="form">
                                         <div class="form-group">
                                             <label>유저아이디</label>
-                                            <p class="help-block">${userView.user_id }</p>
+                                            <p class="help-block">${userView.userId }</p>
                                             <label>유저이름 </label>
-                                            <p class="help-block">${userView.user_name }</p>
+                                            <p class="help-block">${userView.userName }</p>
                                             <label>이메일 </label>
                                             <p class="help-block">${userView.email }</p>
                                             <label>가입일</label>
-                                            <p class="help-block">${userView.reg_date }</p>
+                                            <p class="help-block">${userView.regDate }</p>
                                            
                                         </div>
                                     </form>

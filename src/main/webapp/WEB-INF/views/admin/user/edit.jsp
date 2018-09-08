@@ -416,11 +416,11 @@
                                     	<input type="hidden" name="idx" value="${userView.idx}">
                                         <div class="form-group">
                                             <label>유저아이디</label>
-                                            <p class="help-block">${userView.user_id }</p>
+                                            <p class="help-block">${userView.userId }</p>
                                             <label>유저이름 </label>
-                                            <input type="text" class="form-control" name="user_name" value="${userView.user_name }">
+                                            <input type="text" class="form-control" name="user_name" value="${userView.userName }">
                                             <label>비밀번호</label>
-                                            <input type="password" name="user_pwd" class="form-control" value="${userView.user_pwd}" readonly>
+                                            <input type="password" name="user_pwd" class="form-control" value="${userView.userPwd}" readonly>
                                             <div style="width:45%;display:inline-block;">
 	                                            <label>수정할 비밀번호</label>
 	                                            <input type="text" class="form-control" name="change_pwd" id="change_pwd">
@@ -435,7 +435,7 @@
                                            	</div>
                                             <input type="text" class="form-control" name="email" value="${userView.email }">
                                             <label>가입일</label>
-                                            <p class="help-block">${userView.reg_date}</p>
+                                            <p class="help-block">${userView.regDate}</p>
                                         </div>
                                            <a class="btn btn-default" href="../user/list?idx=${userView.idx}">이전</a>
                                            <input class="btn btn-info" type="submit" value="완료">

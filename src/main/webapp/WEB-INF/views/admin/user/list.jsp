@@ -75,10 +75,10 @@
                                 	<c:forEach items="${userList}" var="userVO">
 	                                    <tr class="odd gradeX">
 	                                        <td><a href="../user/view?idx=${userVO.idx}">${userVO.idx}</a></td>
-	                                        <td>${userVO.user_id}</td>
-	                                        <td>${userVO.user_name}</td>
+	                                        <td>${userVO.userId}</td>
+	                                        <td>${userVO.userName}</td>
 	                                        <td class="center">${userVO.email}</td>
-	                                        <td class="center">${userVO.reg_date}</td>
+	                                        <td class="center">${userVO.regDate}</td>
 	                                    </tr>
                                 	</c:forEach>
                                 </tbody>
