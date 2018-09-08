@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +36,9 @@ public class UserController {
 	
 	//requestMapping의 value값 안에 들어가는 값이 웹브라우저에서 접속하는 주소. 이 주소로 접속하면 home 메써드가 실행됨 
 	@RequestMapping(value = "/admin/user/list", method = RequestMethod.GET)
-	public String list(Locale locale, Model model, @ModelAttribute("sessionUserName") String sessionUserName) {
+	public String list(Locale locale, Model model, HttpSession session) {
 		//세션값이 없는 경우 로그인 화면으로 
-		if(sessionUserName.equals("")) {
+		if(session.getAttribute("sessionUserName")==null || session.getAttribute("sessionUserName").equals("")) {
 			return "redirect:/admin/login/login";
 		}
 		
