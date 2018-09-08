@@ -28,6 +28,6 @@
 		SELECT * FROM user WHERE idx = #{idx}
 	</select>
 	<select id="selectByUserId" parameterType="com.mia.miablog.vo.UserVO" resultMap="resultUserVO">
-		SELECT * FROM user WHERE user_id = #{userId} and idx = #{idx}
+		SELECT * FROM user WHERE user_id = #{userId} and user_pwd = #{userPwd}
 	</select>
 </mapper>
