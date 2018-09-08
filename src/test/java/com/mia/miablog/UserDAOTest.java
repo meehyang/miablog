@@ -27,10 +27,10 @@ public class UserDAOTest {
 	@Test
 	public void insert() {
 		UserVO userVO = new UserVO();
-		userVO.setUser_id("nia");
+		userVO.setuserId("nia");
 		userVO.setEmail("meixiang126@test.com");
-		userVO.setUser_name("meehyang kim");
-		userVO.setUser_pwd("pwd");
+		userVO.setuserName("meehyang kim");
+		userVO.setuserPwd("pwd");
 		
 		userDAO.insert(userVO);
 	}
@@ -39,7 +39,7 @@ public class UserDAOTest {
 	public void selectList() {
 		List<UserVO> userList = userDAO.selectList();
 		for(UserVO userVO : userList) {
-			System.out.println(userVO.getUser_name());
+			System.out.println(userVO.getuserName());
 			assertTrue(userVO instanceof UserVO);
 		}
 	}
@@ -48,7 +48,7 @@ public class UserDAOTest {
 	public void update() {
 		UserVO userVO = new UserVO();
 		userVO.setIdx(1);
-		userVO.setUser_name("sia");
+		userVO.setuserName("sia");
 		
 		userDAO.update(userVO);
 	}
@@ -56,8 +56,17 @@ public class UserDAOTest {
 	@Test
 	public void delete() {
 		UserVO userVO = new UserVO();
-		userVO.setUser_name("sia");
+		userVO.setuserName("sia");
 		
 		userDAO.delete(userVO);
+	}
+	
+	@Test
+	public void selectByUserId() {
+		UserVO userVO = new UserVO();
+		userVO.setIdx(8);
+		userVO.setuserId("nia");
+		
+		userDAO.selectByUserId(userVO);
 	}
 }

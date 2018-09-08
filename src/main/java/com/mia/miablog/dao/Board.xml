@@ -5,15 +5,16 @@
 		<id property="idx" column="idx"></id>
 		<result property="title" column="title"></result>
 		<result property="content" column="content"></result>
-		<result property="user_idx" column="user_idx"></result>
-		<result property="insert_date" column="reg_date"></result>
+		<result property="userIdx" column="user_idx"></result>
+		<result property="insertDate" column="insert_date"></result>
+		<result property="userName" column="user_name"></result>
 	</resultMap>
 	<select id="selectList" parameterType="java.util.HashMap" resultMap="resultBoardVO">
-		SELECT * FROM board LIMIT 10
+		SELECT b.*, u.user_name AS user_name FROM miablog.board as b , miablog.user as u where b.idx = u.idx;
 	</select>
 	<insert id="insert" parameterType="com.mia.miablog.vo.BoardVO">
 		INSERT INTO board ( title, content, user_idx, insert_date )
-			VALUES ( #{title}, #{content}, #{user_idx}, NOW() )
+			VALUES ( #{title}, #{content}, #{userIdx}, NOW() )
 	</insert>
 	<update id="update" parameterType="com.mia.miablog.vo.BoardVO">
 		UPDATE board SET title = #{title} where idx = #{idx}

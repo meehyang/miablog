@@ -5,26 +5,29 @@
 	<resultMap id="resultUserVO" type="com.mia.miablog.vo.UserVO">
 		<!-- property가 자바 vo쪽 변수명 column은 db 쪽 변수 -->
 		<id property="idx" column="idx"></id>
-		<result property="user_id" column="user_id"></result>
+		<result property="userId" column="user_id"></result>
 		<result property="email" column="email"></result>
-		<result property="user_name" column="user_name"></result>
-		<result property="user_pwd" column="user_pwd"></result>
-		<result property="reg_date" column="reg_date"></result>
+		<result property="userName" column="user_name"></result>
+		<result property="userPwd" column="user_pwd"></result>
+		<result property="regDate" column="reg_date"></result>
 	</resultMap>
 	<insert id="insert" parameterType="com.mia.miablog.vo.UserVO">
 		INSERT INTO user ( user_id, email, user_name, user_pwd, reg_date )
-			VALUES ( #{user_id}, #{email}, #{user_name}, #{user_pwd}, NOW() )
+			VALUES ( #{userId}, #{email}, #{userName}, #{userPwd}, NOW() )
 	</insert>
 	<select id="selectList" parameterType="java.util.HashMap" resultMap="resultUserVO">
 		SELECT * FROM user
 	</select>
 	<update id="update" parameterType="com.mia.miablog.vo.UserVO">
-		UPDATE user SET user_name = #{user_name}, user_pwd = #{user_pwd}, email=#{email}  WHERE idx = #{idx}
+		UPDATE user SET user_name = #{userName}, user_pwd = #{userPwd}, email=#{email}  WHERE idx = #{idx}
 	</update>
 	<delete id="delete" parameterType="com.mia.miablog.vo.UserVO">
 		DELETE FROM user WHERE idx = #{idx}
 	</delete>
 	<select id="select" parameterType="com.mia.miablog.vo.UserVO" resultMap="resultUserVO">
 		SELECT * FROM user WHERE idx = #{idx}
+	</select>
+	<select id="selectByUserId" parameterType="com.mia.miablog.vo.UserVO" resultMap="resultUserVO">
+		SELECT * FROM user WHERE user_id = #{userId} and idx = #{idx}
 	</select>
 </mapper>

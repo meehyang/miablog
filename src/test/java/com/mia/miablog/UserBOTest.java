@@ -23,10 +23,10 @@ public class UserBOTest {
 	public void insert() {
 		UserVO userVO = new UserVO();
 		
-		userVO.setUser_id("bo_tester");
+		userVO.setuserId("bo_tester");
 		userVO.setEmail("meixiang126@test.com");
-		userVO.setUser_name("meehyang kim");
-		userVO.setUser_pwd("pwd");
+		userVO.setuserName("meehyang kim");
+		userVO.setuserPwd("pwd");
 		
 		userBO.insert(userVO);
 	}
@@ -36,7 +36,7 @@ public class UserBOTest {
 		UserVO userVO = new UserVO();
 		
 		userVO.setIdx(5);
-		userVO.setUser_name("botester_name_update");
+		userVO.setuserName("botester_name_update");
 		
 		userBO.update(userVO);
 	}
@@ -44,7 +44,7 @@ public class UserBOTest {
 	@Test
 	public void delete() {
 		UserVO userVO = new UserVO();
-		userVO.setUser_name("botester_name_update");
+		userVO.setuserName("botester_name_update");
 		userBO.delete(userVO);
 	}
 	

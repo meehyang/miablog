@@ -13,7 +13,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.mia.miablog.dao.AttachfileDAO;
 import com.mia.miablog.vo.AttachfileVO;
-import com.mia.miablog.vo.BoardVO;
 
 //junit과 servlet-context 파일을 불러오겠다는 명령
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,9 +26,9 @@ public class AttachfileDAOTest {
 	public void insert() {
 		AttachfileVO attachfileVO = new AttachfileVO();
 		
-		attachfileVO.setAttach_file("저장되는첨부파일명.jpg");
-		attachfileVO.setAttach_file_org("/실제경로/원래파일네임.jpg");
-		attachfileVO.setBoard_idx(8);
+		attachfileVO.setattacFile("저장되는첨부파일명.jpg");
+		attachfileVO.setattacFileOrg("/실제경로/원래파일네임.jpg");
+		attachfileVO.setboardIdx(8);
 		
 		attachfileDAO.insert(attachfileVO);
 	}
@@ -38,7 +37,7 @@ public class AttachfileDAOTest {
 	public void update() {
 		AttachfileVO attachfileVO = new AttachfileVO();
 		
-		attachfileVO.setAttach_file("변경파일명");
+		attachfileVO.setattacFile("변경파일명");
 		attachfileVO.setIdx(1);
 		
 		attachfileDAO.update(attachfileVO);
@@ -62,7 +61,7 @@ public class AttachfileDAOTest {
 		List<AttachfileVO> attachList = attachfileDAO.selectList();
 		//변경된 foreach문 for(변수타입 변수명 : 배열이름)
 		for(AttachfileVO attachfileVO: attachList) {
-			System.out.println("idx 는 "+attachfileVO.getIdx() + " 원본파일명은 "+attachfileVO.getAttach_file_org());
+			System.out.println("idx 는 "+attachfileVO.getIdx() + " 원본파일명은 "+attachfileVO.getattacFileOrg());
 			// junit용 테스트 메써드 
 			assertTrue(attachfileVO instanceof AttachfileVO);
 		}

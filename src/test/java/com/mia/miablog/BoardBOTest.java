@@ -25,7 +25,7 @@ public class BoardBOTest {
 		
 		boardVO.setTitle("boardBO test title");
 		boardVO.setContent("메롱메롱메롱멜ㅇ");
-		boardVO.setUser_idx(7);
+		boardVO.setuserIdx(7);
 		
 		boardBO.insert(boardVO);
 	}

@@ -22,9 +22,9 @@ public class AttachfileBOTest {
 	public void insert() {
 		AttachfileVO attachfileVO = new AttachfileVO();
 		
-		attachfileVO.setAttach_file("/bo test.jpg");
-		attachfileVO.setAttach_file_org("../home/image/aaaa.jpg");
-		attachfileVO.setBoard_idx(9);
+		attachfileVO.setattacFile("/bo test.jpg");
+		attachfileVO.setattacFileOrg("../home/image/aaaa.jpg");
+		attachfileVO.setboardIdx(9);
 		
 		attachfileBO.insert(attachfileVO);
 	}
@@ -33,7 +33,7 @@ public class AttachfileBOTest {
 	public void update() {
 		AttachfileVO attachfileVO = new AttachfileVO();
 		
-		attachfileVO.setAttach_file("bo도 잘 바뀌는지 체크 ");
+		attachfileVO.setattacFile("bo도 잘 바뀌는지 체크 ");
 		attachfileVO.setIdx(5);
 		
 		attachfileBO.update(attachfileVO);

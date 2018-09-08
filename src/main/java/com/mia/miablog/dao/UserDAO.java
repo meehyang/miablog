@@ -46,4 +46,8 @@ public class UserDAO extends SqlSessionDaoSupport{
 		return getSqlSession().selectOne("User.select", idx);
 	}
 	
+	public UserVO selectByUserId(UserVO userVO) {
+		return getSqlSession().selectOne("User.selectByUserId", userVO);
+	}
+	
 }

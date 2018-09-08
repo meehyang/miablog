@@ -3,19 +3,19 @@
 <mapper namespace="Attachfile">
 	<resultMap type="com.mia.miablog.vo.AttachfileVO" id="resultAttachfileVO">
 		<id property="idx" column="idx"></id>
-		<result property="attach_file" column="attach_file"></result>
-		<result property="attach_file_org" column="attach_file_org"></result>
-		<result property="board_idx" column="board_idx"></result>
+		<result property="attachFile" column="attach_file"></result>
+		<result property="attachFileOrg" column="attach_file_org"></result>
+		<result property="boardIdx" column="board_idx"></result>
 	</resultMap>
 	<select id="selectList" parameterType="java.util.HashMap" resultMap="resultAttachfileVO">
 		SELECT * FROM attach_file
 	</select>
 	<insert id="insert" parameterType="com.mia.miablog.vo.AttachfileVO">
 		INSERT INTO attach_file (attach_file, attach_file_org, board_idx)  
-		VALUES (#{attach_file}, #{attach_file_org}, #{board_idx})
+		VALUES (#{attachFile}, #{attachFileOrg}, #{boardIdx})
 	</insert>
 	<update id="update" parameterType="com.mia.miablog.vo.AttachfileVO">
-		UPDATE attach_file SET attach_file = #{attach_file} where idx = #{idx}
+		UPDATE attach_file SET attach_file = #{attachFile} where idx = #{idx}
 	</update>
 	<delete id="delete" parameterType="com.mia.miablog.vo.AttachfileVO">
 		DELETE FROM attach_file WHERE idx = #{idx}	
