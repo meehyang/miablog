@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.mia.miablog.dao.UserDAO;
@@ -70,7 +71,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/admin/login/logout", method=RequestMethod.GET)
-	public String logout(@ModelAttribute("sessionUserName") String sessionUserName, Locale locale, Model model) {
+	//@modelAttribute 대신 sessionAttribute 태그를 달고 require 속성을 false로 넣으면해당 메써드에서는 세션값이 없더라도 오류 나지 않음. 초기 로그인 페이지 등에서 이렇게 활용하면 됨 
+	public String logout(@SessionAttribute(required=false, value= "sessionUserName") String sessionUserName, Locale locale, Model model) {
 		model.addAttribute("sessionUserName", "");
 		return "redirect:/admin/login/login";
 	}
