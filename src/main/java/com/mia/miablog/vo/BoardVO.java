@@ -7,6 +7,7 @@ public class BoardVO {
 	private String insertDate;
 	private int userIdx;
 	private String userName;
+	private int boardIdx;
 	
 	public String getuserName() {
 		return userName;
@@ -43,5 +44,11 @@ public class BoardVO {
 	}
 	public void setuserIdx(int userIdx) {
 		this.userIdx = userIdx;
+	}
+	public int getBoardIdx() {
+		return boardIdx;
+	}
+	public void setBoardIdx(int boardIdx) {
+		this.boardIdx = boardIdx;
 	}
 }
