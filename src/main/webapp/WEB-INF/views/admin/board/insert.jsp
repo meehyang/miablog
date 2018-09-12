@@ -31,20 +31,16 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
 </head>
 
 <body>
     <div id="wrapper">
-        <%@ include file="../inc/header.jsp" %>
+		<%@ include file="../inc/header.jsp" %>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">${userView.user_name}의 상세정보 
-	                    <a class="btn btn-default" href="../board/list">이전</a>
-	                    <a class="btn btn-danger" href="../board/delete?idx=${userView.idx }">삭제</a>
-	                    <a class="btn btn-info" href="../board/edit?idx=${userView.idx }">정보수정</a>
-                    </h1>
+                    <h1 class="page-header">게시물 등록</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -55,21 +51,44 @@
                         <div class="panel-heading">
                             Basic Form Elements
                         </div>
+                        <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+                        <script type="text/javascript">
+                        	$(document).ready(function(){
+                        		$('#change_pwd_chk').keyup(function(){
+	                        		if($("#user_pwd").val() !== $('#change_pwd_chk').val()){
+	                        			$('.pwdState').text('');
+	                        			$('.pwdState').html('<span style="color:red;font-weight:bold;">비밀번호가 일치하지 않습니다. 다시 확인해주세요.</span>');
+	                        		}else{
+	                        			$('.pwdState').text('');
+	                        			$('.pwdState').html('<span style="color:green;font-weight:bold;">비밀번호 확인 완료</span>');
+	                        		}
+                        		});
+                        	});
+                        	
+                        	function validateFrm(){
+                        		var frm = document.frm;
+                        		if($("#user_pwd").val() !== $('#change_pwd_chk').val()){
+                        			alert('비밀번호를 확인해주세요.');
+                        			return false;
+                        		}else{
+                        			if(confirm('등록 하시겠습니까?')){
+                        				frm.submit();
+                        			}
+                        		}
+                        	}
+                        </script>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" name="frm" method="post" action="insertDo" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label>제목 </label>
-                                            <p class="help-block">${boardView.title }</p>
-                                            <label>유저이름 </label>
-                                            <p class="help-block">${boardView.userName }</p>
-                                            <p><label>첨부파일</label></p>
-                                            <img src="../..${attachView.attachFile }">
-                                            <p><label>작성일 </label></p>
-                                            <p class=help-block">${boardView.insertDate }</p>
-                                           
+                                        	<label>제목 </label>
+                                            <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요 ">
+                                            <label>파일</label>
+                                            <input type="file" class="form-control" name="attachFileOrg" placeholder="아이디를 입력하세요 ">
                                         </div>
+                                           <a class="btn btn-default" href="../user/list">이전</a>
+                                           <input class="btn btn-info" type="submit" value="완료">
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

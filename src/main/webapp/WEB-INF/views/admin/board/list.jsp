@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">게시판 목록
-                    <a class="btn btn-success" href="../user/insert">회원등록</a>
+                    <a class="btn btn-success" href="../board/insert">게시글 등록</a>
                     </h1>
                 </div>
                 <!-- /.col-lg-12 -->
