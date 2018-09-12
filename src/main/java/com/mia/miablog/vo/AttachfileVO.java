@@ -2,8 +2,8 @@ package com.mia.miablog.vo;
 
 public class AttachfileVO {
 	private int idx;
-	private String attacFileOrg;
-	private String attacFile;
+	private String attachFileOrg;
+	private String attachFile;
 	private int boardIdx;
 	public int getIdx() {
 		return idx;
@@ -11,17 +11,17 @@ public class AttachfileVO {
 	public void setIdx(int idx) {
 		this.idx = idx;
 	}
-	public String getattacFileOrg() {
-		return attacFileOrg;
+	public String getattachFileOrg() {
+		return attachFileOrg;
 	}
-	public void setattacFileOrg(String attacFileOrg) {
-		this.attacFileOrg = attacFileOrg;
+	public void setattachFileOrg(String attachFileOrg) {
+		this.attachFileOrg = attachFileOrg;
 	}
-	public String getattacFile() {
-		return attacFile;
+	public String getattachFile() {
+		return attachFile;
 	}
-	public void setattacFile(String attacFile) {
-		this.attacFile = attacFile;
+	public void setattachFile(String attachFile) {
+		this.attachFile = attachFile;
 	}
 	public int getboardIdx() {
 		return boardIdx;
