@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import com.mia.miablog.vo.AttachfileVO;
+import com.mia.miablog.vo.BoardVO;
 
 public class AttachfileDAO extends SqlSessionDaoSupport{
 	private SqlSessionTemplate sqlSessionTemplate;
@@ -28,5 +29,9 @@ public class AttachfileDAO extends SqlSessionDaoSupport{
 		Map<String, String> paramMap = new HashMap<String, String>();
 		return getSqlSession().selectList("Attachfile.selectList", paramMap);
 		
+	}
+	
+	public AttachfileVO select(int idx){
+		return getSqlSession().selectOne("Attachfile.select", idx);
 	}
 }
