@@ -20,4 +20,7 @@
 	<delete id="delete" parameterType="com.mia.miablog.vo.AttachfileVO">
 		DELETE FROM attach_file WHERE idx = #{idx}	
 	</delete>
+	<select id="select" parameterType="java.util.HashMap" resultMap="resultAttachfileVO">
+		SELECT * FROM attach_file WHERE board_idx = #{idx}
+	</select>
 </mapper>
