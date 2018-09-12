@@ -12,9 +12,15 @@
 	<select id="selectList" parameterType="java.util.HashMap" resultMap="resultBoardVO">
 		SELECT b.*, u.user_name AS user_name FROM miablog.board as b , miablog.user as u where b.idx = u.idx;
 	</select>
+	<select id="select" parameterType="com.mia.miablog.vo.BoardVO" resultMap="resultBoardVO">
+		SELECT * FROM board WHERE idx = #{idx}
+	</select>
 	<insert id="insert" parameterType="com.mia.miablog.vo.BoardVO">
 		INSERT INTO board ( title, content, user_idx, insert_date )
 			VALUES ( #{title}, #{content}, #{userIdx}, NOW() )
+		<selectKey keyProperty="boardIdx" resultType="int" order="AFTER">
+        	SELECT LAST_INSERT_ID()
+  		 </selectKey>
 	</insert>
 	<update id="update" parameterType="com.mia.miablog.vo.BoardVO">
 		UPDATE board SET title = #{title} where idx = #{idx}
