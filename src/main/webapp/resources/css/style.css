@@ -501,16 +501,11 @@ p {
   margin: 30px 0 0 0;
   position: relative;
 }
-.fh5co-social button{
-	background-color: #fff;
-    border: none;
-}
 .fh5co-social li {
   padding: 0;
   margin: 0;
   list-style: none;
   display: inline;
-  font-size:11px;
 }
 .fh5co-social li a {
   font-size: 20px;
@@ -645,7 +640,7 @@ figure figcaption {
 .js .to-animate, .js
 .to-animate-2, .js
 .animate-box {
-  opacity: 0;
+  opacity: 1;
 }
 
 .fh5co-nav-toggle {
