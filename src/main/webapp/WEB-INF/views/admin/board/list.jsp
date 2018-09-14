@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="kor">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,7 +63,7 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>게시글 번호</th>
+                                        <th>No.</th>
                                         <th>제목</th>
                                         <th>내용</th>
                                         <th>작성자</th>
@@ -74,8 +74,30 @@
                                 	<c:forEach items="${boardList}" var="boardVO">
 	                                    <tr class="odd gradeX">
 	                                        <td><a href="../board/view?idx=${boardVO.idx}">${boardVO.idx}</a></td>
-	                                        <td>${boardVO.title}</td>
-	                                        <td>${boardVO.content}</td>
+	                                        <td>
+	                                        	<c:choose>
+													<c:when test="${fn:length(boardVO.title) gt 21}">
+														<c:out value="${fn:substring(boardVO.title, 0, 20)}">...
+														</c:out>
+													</c:when>
+													<c:otherwise>
+														<c:out value="${boardVO.title}">...
+														</c:out>
+													</c:otherwise>
+												</c:choose>	
+	                                        </td>
+	                                        <td>
+	                                        	<c:choose>
+													<c:when test="${fn:length(boardVO.content) gt 51}">
+														<c:out value="${fn:substring(boardVO.content, 0, 50)}">...
+														</c:out>
+													</c:when>
+													<c:otherwise>
+														<c:out value="${boardVO.content}">...
+														</c:out>
+													</c:otherwise>
+												</c:choose>
+	                                        </td>
 	                                        <td class="center">${boardVO.userName}</td>
 	                                        <td class="center">${boardVO.insertDate}</td>
 	                                    </tr>

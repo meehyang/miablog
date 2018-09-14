@@ -83,12 +83,12 @@
                                     <form role="form" name="frm" method="post" action="insertDo">
                                         <div class="form-group">
                                             <label>유저아이디</label>
-                                            <input type="text" class="form-control" name="user_id" placeholder="아이디를 입력하세요 ">
+                                            <input type="text" class="form-control" name="userId" placeholder="아이디를 입력하세요 ">
                                             <label>유저이름 </label>
-                                            <input type="text" class="form-control" name="user_name" placeholder="이름을 입력하세요 ">
+                                            <input type="text" class="form-control" name="userName" placeholder="이름을 입력하세요 ">
                                             <div style="width:45%;display:inline-block;">
 	                                            <label>비밀번호</label>
-	                                            <input type="password" class="form-control" id="user_pwd" name="user_pwd" id="change_pwd">
+	                                            <input type="password" class="form-control" id="user_pwd" name="userPwd" id="change_pwd">
 	                                        </div>
 	                                        <div style="width:45%;display:inline-block;">
 	                                            <label>비밀번호 확인</label>

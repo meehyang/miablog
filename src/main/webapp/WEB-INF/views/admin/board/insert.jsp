@@ -31,9 +31,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
-
 <body>
     <div id="wrapper">
 		<%@ include file="../inc/header.jsp" %>
@@ -79,16 +77,28 @@
                         </script>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <form role="form" name="frm" method="post" action="insertDo" enctype="multipart/form-data">
+                                    	<input type="hidden" name="userIdx" value="<c:out value="${userIdx}"/>">
                                         <div class="form-group">
                                         	<label>제목 </label>
                                             <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요 ">
-                                            <label>파일</label>
-                                            <input type="file" class="form-control" name="attachFileOrg" placeholder="아이디를 입력하세요 ">
+                                            <p style="margin-top:10px;"><label>파일</label></p>
+                                            <input type="file" class="form-control" name="attachFileOrg">
                                         </div>
-                                           <a class="btn btn-default" href="../user/list">이전</a>
-                                           <input class="btn btn-info" type="submit" value="완료">
+                                        <p style="margin-top:10px;"><label>카테고리</label></p>
+                                        <select name="cate" class="form-control">
+                                        	<option>music</option>
+                                        	<option>life</option>
+                                        	<option>people</option>
+                                        	<option>trip</option>
+                                        	<option>etc</option>
+                                        </select>
+                                        
+                                        <p style="margin-top:10px;"><label>내용 </label></p>
+										<textarea name="content" id="content" class="form-control" rows="10" cols="100"></textarea>
+                                        <a class="btn btn-default" href="../user/list">이전</a>
+                                        <input class="btn btn-info" type="submit" value="완료">
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
