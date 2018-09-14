@@ -55,7 +55,7 @@ public class BoardDAOTest {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setIdx(3);
 		
-		boardDAO.delete(boardVO);
+		boardDAO.delete(boardVO.getIdx());
 	}
 }
 

@@ -46,7 +46,7 @@ public class BoardBOTest {
 		
 		boardVO.setIdx(5);
 		
-		boardBO.delete(boardVO);
+		boardBO.delete(boardVO.getIdx());
 	}
 	
 	@Test
