@@ -3,6 +3,8 @@ package com.mia.miablog;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,7 @@ import com.mia.miablog.vo.UserVO;
 @Controller
 //세션의 이름으로 쓸 값들을 어노테이션과 함께 선언
 //@SessionAttributes는 항상 클래스 상단에 위치하며 해당 어노테이션이 붙은 컨트롤러는 @SessionAttributes("세션명")에서 지정하고 있는 "세션명"을 @RequestMapping으로 설정한 모든 뷰에서 공유하고 있어야 한다는 규칙을 갖고 있다.
-@SessionAttributes({"sessionUserName","sessionEmail"})
+//@SessionAttributes({"sessionUserName","sessionUserIdx"})
 public class LoginController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -36,13 +38,17 @@ public class LoginController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/admin/login/login", method = RequestMethod.GET)
-	public String login(Locale locale, Model model) {
-		return "admin/login/login";
+	public String login(Locale locale, Model model, HttpSession session) {
+		if(session.getAttribute("sessionUserName") == null || session.getAttribute("sessionUserIdx") == null) {
+			return "admin/login/login";
+		}else {
+			return "redirect:/admin/board/list";
+		}
 	}
 	
 	//입력값 검증은 프론트단에서 하는 게 나을듯,,,
 	@RequestMapping(value = "/admin/login/loginDo", method = RequestMethod.POST)
-	public String loginDo(@RequestParam("userId") String userId, @RequestParam("userPwd") String userPwd, Locale locale, Model model) {
+	public String loginDo(@RequestParam("userId") String userId, @RequestParam("userPwd") String userPwd, Locale locale, Model model, HttpSession session) {
 		
 		//id나 pwd 값 중 하나라도 들어오지 않은경우 로그인 화면으로 
 		if(userPwd.equals("") || userId.equals("")){
@@ -58,13 +64,15 @@ public class LoginController {
 			if(returnUserVO == null) {
 				return "redirect:/admin/login/login";
 			}else {
-				if(returnUserVO.getuserPwd().equals(userPwd) && returnUserVO.getuserId().equals(userId)) {
-					//db의 정보와 비교해 아이디-패스워드 정보가 일치할 경우 세션에 유저 이름 저장
-					model.addAttribute("sessionUserName", returnUserVO.getuserName()); 
+				if(returnUserVO.getuserPwd().equals(userPwd) && returnUserVO.getuserId().equals(userId) && returnUserVO.getUserGrade()==1) {
+					//db의 정보와 비교해 아이디-패스워드 정보가 일치할 경우 & 유저권한이 1일 때  세션에 유저 이름 저장
+					session.setAttribute("sessionUserName", returnUserVO.getuserName());
+					session.setAttribute("sessionUserIdx", returnUserVO.getIdx());
 				}else {
 					//틀린 경우 로그인 화면으로 돌아가기 
 					return "redirect:/admin/login/login";
 				}
+				
 				return "redirect:/admin/board/list";
 			}
 		}
@@ -72,8 +80,10 @@ public class LoginController {
 	
 	@RequestMapping(value="/admin/login/logout", method=RequestMethod.GET)
 	//@modelAttribute 대신 sessionAttribute 태그를 달고 require 속성을 false로 넣으면해당 메써드에서는 세션값이 없더라도 오류 나지 않음. 초기 로그인 페이지 등에서 이렇게 활용하면 됨 
-	public String logout(@SessionAttribute(required=false, value= "sessionUserName") String sessionUserName, Locale locale, Model model) {
-		model.addAttribute("sessionUserName", "");
+	public String logout(Locale locale, Model model, HttpSession session) {
+		session.removeAttribute("sessionUserName");
+		session.removeAttribute("sessionUserIdx");
+		
 		return "redirect:/admin/login/login";
 	}
 }
