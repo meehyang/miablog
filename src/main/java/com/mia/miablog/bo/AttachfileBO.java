@@ -19,11 +19,12 @@ public class AttachfileBO {
 		attachfileDAO.update(attachfileVO);
 	}
 	
-	public void delete(AttachfileVO attachfileVO) {
-		attachfileDAO.delete(attachfileVO);
+	public void delete(int idx) {
+		attachfileDAO.delete(idx);
 	}
 	
 	public List<AttachfileVO> selectList(){
-		return attachfileDAO.selectList(); 
+		AttachfileVO attachfileVO = new AttachfileVO();
+		return attachfileDAO.selectList(attachfileVO); 
 	}
 }

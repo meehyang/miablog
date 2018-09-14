@@ -21,13 +21,12 @@ public class AttachfileDAO extends SqlSessionDaoSupport{
 		getSqlSession().update("Attachfile.update", attachfileVO);
 	}
 
-	public void delete(AttachfileVO attachfileVO) {
-		getSqlSession().delete("Attachfile.delete", attachfileVO);
+	public void delete(int idx) {
+		getSqlSession().delete("Attachfile.delete", idx);
 	}
 	
-	public List<AttachfileVO> selectList(){
-		Map<String, String> paramMap = new HashMap<String, String>();
-		return getSqlSession().selectList("Attachfile.selectList", paramMap);
+	public List<AttachfileVO> selectList(AttachfileVO attachfileVO){
+		return getSqlSession().selectList("Attachfile.selectList", attachfileVO);
 		
 	}
 	

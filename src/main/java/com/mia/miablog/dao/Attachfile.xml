@@ -8,19 +8,19 @@
 		<result property="boardIdx" column="board_idx"></result>
 	</resultMap>
 	<select id="selectList" parameterType="java.util.HashMap" resultMap="resultAttachfileVO">
-		SELECT * FROM attach_file
+		SELECT * FROM attach_file WHERE board_idx = #{boardIdx}
 	</select>
 	<insert id="insert" parameterType="com.mia.miablog.vo.AttachfileVO">
 		INSERT INTO attach_file (attach_file, attach_file_org, board_idx)  
 		VALUES (#{attachFile}, #{attachFileOrg}, #{boardIdx})
 	</insert>
 	<update id="update" parameterType="com.mia.miablog.vo.AttachfileVO">
-		UPDATE attach_file SET attach_file = #{attachFile} where idx = #{idx}
+		UPDATE attach_file SET attach_file = #{attachFile}, attach_file_org=#{attachFileOrg} where board_idx = #{boardIdx}
 	</update>
 	<delete id="delete" parameterType="com.mia.miablog.vo.AttachfileVO">
 		DELETE FROM attach_file WHERE idx = #{idx}	
 	</delete>
 	<select id="select" parameterType="java.util.HashMap" resultMap="resultAttachfileVO">
-		SELECT * FROM attach_file WHERE board_idx = #{idx}
+		SELECT * FROM attach_file WHERE board_idx = #{boardIdx}
 	</select>
 </mapper>

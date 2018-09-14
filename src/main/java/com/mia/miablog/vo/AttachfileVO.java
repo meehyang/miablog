@@ -5,6 +5,7 @@ public class AttachfileVO {
 	private String attachFileOrg;
 	private String attachFile;
 	private int boardIdx;
+	
 	public int getIdx() {
 		return idx;
 	}
