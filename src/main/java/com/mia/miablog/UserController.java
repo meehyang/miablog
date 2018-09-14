@@ -25,7 +25,7 @@ import com.mia.miablog.vo.UserVO;
  * Handles requests for the application home page.
  */
 @Controller
-@SessionAttributes("sessionUserName")
+@SessionAttributes({"sessionUserName", "sessionUserIdx"})
 public class UserController {
 	
 	@Autowired
@@ -38,7 +38,7 @@ public class UserController {
 	@RequestMapping(value = "/admin/user/list", method = RequestMethod.GET)
 	public String list(Locale locale, Model model, HttpSession session) {
 		//세션값이 없는 경우 로그인 화면으로 
-		if(session.getAttribute("sessionUserName")==null || session.getAttribute("sessionUserName").equals("")) {
+		if(session.getAttribute("sessionUserName")==null || session.getAttribute("sessionUserName").equals("") || session.getAttribute("sessionUserIdx")==null || session.getAttribute("sessionUserIdx").equals("")) {
 			return "redirect:/admin/login/login";
 		}
 		
@@ -65,15 +65,15 @@ public class UserController {
 	}
 	
 	@RequestMapping(value ="/admin/user/editDo", method = RequestMethod.POST)
-	public String userEdit(@RequestParam("idx") int idx, @RequestParam("user_name") String user_name, @RequestParam("email") String email, @RequestParam("change_pwd") String change_pwd, Locale locale, Model model) {
+	public String userEdit(@RequestParam("idx") int idx, @RequestParam("userName") String userName, @RequestParam("email") String email, @RequestParam("changePwd") String changePwd, Locale locale, Model model) {
 		UserVO userVO = new UserVO();
 		
 		//edit 페이지에서 넘어온 값 VO에 세팅 
 		userVO.setIdx(idx);
-		userVO.setuserName(user_name);
+		userVO.setuserName(userName);
 		//비밀번호를 변경하는 경우 
-		if(change_pwd != null) {
-			userVO.setuserPwd(change_pwd);
+		if(changePwd != null ) {
+			userVO.setuserPwd(changePwd);
 		}
 		userVO.setEmail(email);
 		
@@ -90,7 +90,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value ="/admin/user/insertDo", method = RequestMethod.POST)
-	public String userInsert(@RequestParam("user_id") String userId, @RequestParam("user_name") String userName, @RequestParam("email") String email, @RequestParam("user_pwd") String userPwd, Locale locale, Model model) {
+	public String userInsert(@RequestParam("userId") String userId, @RequestParam("userName") String userName, @RequestParam("email") String email, @RequestParam("userPwd") String userPwd, Locale locale, Model model) {
 		UserVO userVO = new UserVO();
 		
 		//insert 페이지에서 넘어온 값 VO에 세팅 

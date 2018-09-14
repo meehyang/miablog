@@ -8,6 +8,8 @@ public class UserVO {
 	private String userPwd;
 	private String regDate;
 	
+	private int userGrade;
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -43,5 +45,11 @@ public class UserVO {
 	}
 	public void setregDate(String regDate) {
 		this.regDate = regDate;
+	}
+	public int getUserGrade() {
+		return userGrade;
+	}
+	public void setUserGrade(int userGrade) {
+		this.userGrade = userGrade;
 	}
 }

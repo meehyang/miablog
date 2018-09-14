@@ -10,6 +10,7 @@
 		<result property="userName" column="user_name"></result>
 		<result property="userPwd" column="user_pwd"></result>
 		<result property="regDate" column="reg_date"></result>
+		<result property="userGrade" column="user_grade"></result>
 	</resultMap>
 	<insert id="insert" parameterType="com.mia.miablog.vo.UserVO">
 		INSERT INTO user ( user_id, email, user_name, user_pwd, reg_date )
