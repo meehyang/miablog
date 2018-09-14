@@ -19,8 +19,8 @@ public class BoardBO {
 		boardDAO.update(boardVO);
 	}
 	
-	public void delete(BoardVO boardVO) {
-		boardDAO.delete(boardVO);
+	public void delete(int idx) {
+		boardDAO.delete(idx);
 	}
 	
 	public List<BoardVO> selectList() {

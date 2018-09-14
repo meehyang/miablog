@@ -22,8 +22,8 @@ public class BoardDAO extends SqlSessionDaoSupport{
 		getSqlSession().update("Board.update", boardVO);
 	}
 	
-	public void delete(BoardVO boardVO) {
-		getSqlSession().delete("Board.delete", boardVO);
+	public void delete(int idx) {
+		getSqlSession().delete("Board.delete", idx);
 	}
 	
 	public List<BoardVO> selectList(){
@@ -33,5 +33,9 @@ public class BoardDAO extends SqlSessionDaoSupport{
 	
 	public BoardVO select(int idx){
 		return getSqlSession().selectOne("Board.select", idx);
+	}
+	
+	public BoardVO selectNum(int idx){
+		return getSqlSession().selectOne("Board.selectNum", idx);
 	}
 }

@@ -8,24 +8,31 @@
 		<result property="userIdx" column="user_idx"></result>
 		<result property="insertDate" column="insert_date"></result>
 		<result property="userName" column="user_name"></result>
+		<result property="cate" column="cate"></result>
+		<result property="attachFile" column="attach_file"></result>
+		<result property="prevIdx" column="prev_idx"></result>
+		<result property="nextIdx" column="next_idx"></result>
 	</resultMap>
 	<select id="selectList" parameterType="java.util.HashMap" resultMap="resultBoardVO">
-		SELECT b.*, u.user_name AS user_name FROM miablog.board as b , miablog.user as u where b.idx = u.idx;
+		select b.*, u.user_name, a.attach_file from (miablog.board as b left outer join miablog.user as u on b.user_idx=u.idx) left join miablog.attach_file as a on a.board_idx=b.idx;
 	</select>
-	<select id="select" parameterType="com.mia.miablog.vo.BoardVO" resultMap="resultBoardVO">
-		SELECT * FROM board WHERE idx = #{idx}
+	<select id="select" parameterType="int" resultMap="resultBoardVO">
+		SELECT b.*, u.user_name FROM miablog.board AS b LEFT OUTER JOIN miablog.user AS u ON b.user_idx=u.idx WHERE b.idx = #{idx}; 
 	</select>
 	<insert id="insert" parameterType="com.mia.miablog.vo.BoardVO">
-		INSERT INTO board ( title, content, user_idx, insert_date )
-			VALUES ( #{title}, #{content}, #{userIdx}, NOW() )
+		INSERT INTO board ( title, content, user_idx, insert_date, cate )
+			VALUES ( #{title}, #{content}, #{userIdx}, NOW(), #{cate} )
 		<selectKey keyProperty="boardIdx" resultType="int" order="AFTER">
         	SELECT LAST_INSERT_ID()
   		 </selectKey>
 	</insert>
 	<update id="update" parameterType="com.mia.miablog.vo.BoardVO">
-		UPDATE board SET title = #{title} where idx = #{idx}
+		UPDATE board SET title = #{title}, content=#{content}, insert_date = now(), cate = #{cate} where idx = #{idx}
 	</update>
 	<delete id="delete" parameterType="com.mia.miablog.vo.BoardVO">
 		DELETE FROM board WHERE idx = #{idx}
 	</delete>
+	<select id="selectNum" parameterType="int" resultMap="resultBoardVO">
+		SELECT (SELECT  idx FROM miablog.board WHERE idx <![CDATA[<]]> #{idx} ORDER BY idx DESC LIMIT 1) as prev_idx , (SELECT idx FROM miablog.board WHERE idx <![CDATA[>]]> #{idx}  ORDER BY idx LIMIT 1)  as next_idx from miablog.board where idx = #{idx};
+	</select>
 </mapper>

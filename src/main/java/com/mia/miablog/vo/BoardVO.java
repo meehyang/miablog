@@ -8,7 +8,17 @@ public class BoardVO {
 	private int userIdx;
 	private String userName;
 	private int boardIdx;
+	private String cate;
+	private String attachFile;
+	private int prevIdx;
+	private int nextIdx;
 	
+	public String getAttachFile() {
+		return attachFile;
+	}
+	public void setAttachFile(String attachFile) {
+		this.attachFile = attachFile;
+	}
 	public String getuserName() {
 		return userName;
 	}
@@ -50,5 +60,23 @@ public class BoardVO {
 	}
 	public void setBoardIdx(int boardIdx) {
 		this.boardIdx = boardIdx;
+	}
+	public String getCate() {
+		return cate;
+	}
+	public void setCate(String cate) {
+		this.cate = cate;
+	}
+	public int getPrevIdx() {
+		return prevIdx;
+	}
+	public void setPrevIdx(int prevIdx) {
+		this.prevIdx = prevIdx;
+	}
+	public int getNextIdx() {
+		return nextIdx;
+	}
+	public void setNextIdx(int nextIdx) {
+		this.nextIdx = nextIdx;
 	}
 }
