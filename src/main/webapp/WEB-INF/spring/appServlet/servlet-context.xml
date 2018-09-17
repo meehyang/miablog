@@ -20,6 +20,7 @@
 	<resources mapping="/sass/**" location="/resources/sass/" />
 	<resources mapping="/admin/**" location="/resources/admin/" />
 	<resources mapping="/upload/**" location="/resources/upload/" />
+	<resources mapping="/daumEditor/**" location="/resources/daumEditor/" />
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
@@ -79,6 +80,21 @@
 		<beans:property name="sqlSessionTemplate" ref="sqlSessionTemplate"></beans:property>
 	</beans:bean>
 	<beans:bean id="AttachfileBO" class="com.mia.miablog.bo.AttachfileBO"></beans:bean>
+	
+	<!-- 인터셉터 객체 생성 -->
+    <beans:bean id="sessionHandlerInterceptor" class="com.mia.miablog.SessionHandlerInterceptor"></beans:bean>
+    <!-- Interceptor 설정 -->
+    <!-- 로그인페이지 처럼 인터셉터를 거치면 안되는 페이지들 혹은 꼭 인터셉터를 거쳐야하는 페이지 등을 설정하기 위한 태그  -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/admin/**"/>
+			<exclude-mapping path="/admin/login/login"/>
+			<exclude-mapping path="/admin/login/loginDo"/>
+			<beans:ref bean="sessionHandlerInterceptor"/>
+		</interceptor>
+	</interceptors>
+
+
 	
 	<context:component-scan base-package="com.mia.miablog" />
 </beans:beans>

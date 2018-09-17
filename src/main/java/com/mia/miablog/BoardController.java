@@ -48,10 +48,10 @@ public class BoardController {
 	
 	@RequestMapping(value="/admin/board/list", method = RequestMethod.GET)
 	public String list(Locale locale, Model model, HttpSession session) {
-		if(session.getAttribute("sessionUserName")==null || session.getAttribute("sessionUserName").equals("") || session.getAttribute("sessionUserIdx")==null || session.getAttribute("sessionUserIdx").equals("")) {
-			return "redirect:/admin/login/login";
-		}
-		
+		//인터셉터를 만들었기 때문에 기존 세션 처리는 필요없어짐 
+//		if(session.getAttribute("sessionUserName")==null || session.getAttribute("sessionUserName").equals("") || session.getAttribute("sessionUserIdx")==null || session.getAttribute("sessionUserIdx").equals("")) {
+//			return "redirect:/admin/login/login";
+//		}
 		List<BoardVO> boardList = boardDAO.selectList();
 		model.addAttribute("boardList", boardList);
 		return "admin/board/list";
@@ -69,7 +69,7 @@ public class BoardController {
 		//첨부파일이 있는 경우 첨부파일 먼저 삭제 
 		AttachfileVO deleteAttachFile = attachfileDAO.select(idx);
 		if(deleteAttachFile!=null) {
-			System.out.println("삭제할 경로 "+ deleteAttachFile.getattachFile() +"삭제할 파일 넘버 "+deleteAttachFile.getIdx());
+			//System.out.println("삭제할 경로 "+ deleteAttachFile.getattachFile() +"삭제할 파일 넘버 "+deleteAttachFile.getIdx());
 			attachfileDAO.delete(deleteAttachFile.getIdx());
 		}
 		
