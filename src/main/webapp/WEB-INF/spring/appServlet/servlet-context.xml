@@ -66,20 +66,21 @@
 	<!-- 작성한 VO, DAO, BO 등록 -->
 	<beans:bean id="UserVO" class="com.mia.miablog.vo.UserVO"></beans:bean>
 	<beans:bean id="UserDAO" class="com.mia.miablog.dao.UserDAO">
-		<beans:property name="sqlSessionTemplate" ref="sqlSessionTemplate"></beans:property>
+		<beans:property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</beans:bean>
 	<beans:bean id="UserBO" class="com.mia.miablog.bo.UserBO"></beans:bean>
 	
 	<beans:bean id="BoardVO" class="com.mia.miablog.vo.BoardVO"></beans:bean>
 	<beans:bean id="BoardDAO" class="com.mia.miablog.dao.BoardDAO">
-		<beans:property name="sqlSessionTemplate" ref="sqlSessionTemplate"></beans:property>
+		<beans:property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</beans:bean>
 	<beans:bean id="BoardBO" class="com.mia.miablog.bo.BoardBO"></beans:bean>
 	
 	<beans:bean id="AttachfileDAO" class="com.mia.miablog.dao.AttachfileDAO">
-		<beans:property name="sqlSessionTemplate" ref="sqlSessionTemplate"></beans:property>
+		<beans:property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</beans:bean>
 	<beans:bean id="AttachfileBO" class="com.mia.miablog.bo.AttachfileBO"></beans:bean>
+	<beans:bean id="AttachfileVO" class="com.mia.miablog.vo.AttachfileVO"></beans:bean>
 	
 	<!-- 인터셉터 객체 생성 -->
     <beans:bean id="sessionHandlerInterceptor" class="com.mia.miablog.SessionHandlerInterceptor"></beans:bean>
@@ -88,13 +89,13 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/admin/**"/>
+			<!-- css 깨져 ,,  -->
+			<exclude-mapping path="/admin/vendor/**"/>
 			<exclude-mapping path="/admin/login/login"/>
 			<exclude-mapping path="/admin/login/loginDo"/>
 			<beans:ref bean="sessionHandlerInterceptor"/>
 		</interceptor>
 	</interceptors>
 
-
-	
 	<context:component-scan base-package="com.mia.miablog" />
 </beans:beans>

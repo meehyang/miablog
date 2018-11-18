@@ -44,7 +44,9 @@
                     <h1 class="page-header">${userView.userName}의 상세정보 
 	                    <a class="btn btn-default" href="../user/list">이전</a>
 	                    <a class="btn btn-danger" href="../user/delete?idx=${userView.idx }">삭제</a>
-	                    <a class="btn btn-info" href="../user/edit?idx=${userView.idx }">정보수정</a>
+	                    <c:if test="${userGrade.userGrade eq 1}">
+		                    <a class="btn btn-info" href="../user/edit?idx=${userView.idx }">정보수정</a>
+						</c:if>
                     </h1>
                 </div>
                 <!-- /.col-lg-12 -->

@@ -1,14 +1,10 @@
 package com.mia.miablog.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import com.mia.miablog.vo.AttachfileVO;
-import com.mia.miablog.vo.BoardVO;
 
 public class AttachfileDAO extends SqlSessionDaoSupport{
 	private SqlSessionTemplate sqlSessionTemplate;

@@ -12,6 +12,7 @@ public class BoardVO {
 	private String attachFile;
 	private int prevIdx;
 	private int nextIdx;
+	private int userGrade;
 	
 	public String getAttachFile() {
 		return attachFile;
@@ -78,5 +79,11 @@ public class BoardVO {
 	}
 	public void setNextIdx(int nextIdx) {
 		this.nextIdx = nextIdx;
+	}
+	public int getUserGrade() {
+		return userGrade;
+	}
+	public void setUserGrade(int userGrade) {
+		this.userGrade = userGrade;
 	}
 }

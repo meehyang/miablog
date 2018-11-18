@@ -84,6 +84,15 @@
                                             <p class="help-block">${userView.userId }</p>
                                             <label>유저이름 </label>
                                             <input type="text" class="form-control" name="userName" value="${userView.userName }">
+                                            <p style="margin-top:10px;"><label>유저권한</label></p>
+                                            <c:if test="${userGrade.userGrade eq 1}">
+	                                            <p>
+		                                            <select name="userGrade">
+		                                            	<option value="1" ${userView.userGrade == 1 ? 'selected="selected"':''}>master</option>
+		                                            	<option value="2" ${userView.userGrade == 2 ? 'selected="selected"':''}>general</option>
+		                                            </select>
+		                                        </p>
+											</c:if>
                                             <label>비밀번호</label>
                                             <input type="password" name="userPwd" class="form-control" value="${userView.userPwd}" readonly>
                                             <div style="width:45%;display:inline-block;">

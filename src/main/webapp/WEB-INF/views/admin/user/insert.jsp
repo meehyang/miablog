@@ -86,6 +86,15 @@
                                             <input type="text" class="form-control" name="userId" placeholder="아이디를 입력하세요 ">
                                             <label>유저이름 </label>
                                             <input type="text" class="form-control" name="userName" placeholder="이름을 입력하세요 ">
+                                            <c:if test="${userGrade.userGrade eq 1}">
+	                                            <p style="margin-top:10px;"><label>유저권한</label></p>
+	                                            <p>
+		                                            <select name="userGrade">
+		                                            	<option value="1">master</option>
+		                                            	<option value="2">general</option>
+		                                            </select>
+		                                        </p>
+											</c:if>
                                             <div style="width:45%;display:inline-block;">
 	                                            <label>비밀번호</label>
 	                                            <input type="password" class="form-control" id="user_pwd" name="userPwd" id="change_pwd">

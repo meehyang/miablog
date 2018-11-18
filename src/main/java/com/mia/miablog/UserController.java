@@ -38,34 +38,47 @@ public class UserController {
 	@RequestMapping(value = "/admin/user/list", method = RequestMethod.GET)
 	public String list(Locale locale, Model model, HttpSession session) {
 		//세션값이 없는 경우 로그인 화면으로 
-		if(session.getAttribute("sessionUserName")==null || session.getAttribute("sessionUserName").equals("") || session.getAttribute("sessionUserIdx")==null || session.getAttribute("sessionUserIdx").equals("")) {
-			return "redirect:/admin/login/login";
-		}
+//		if(session.getAttribute("sessionUserName")==null || session.getAttribute("sessionUserName").equals("") || session.getAttribute("sessionUserIdx")==null || session.getAttribute("sessionUserIdx").equals("")) {
+//			return "redirect:/admin/login/login";
+//		}
 		
 		//DAO에서 selectList 값 가져오기 
 		List<UserVO> userList = userDAO.selectList();
+		//user idx를 가지고 오기 위한 select
+		int idx = (int) session.getAttribute("sessionUserIdx");
+		UserVO userGrade = userDAO.select(idx);
+		
 		//가져온 값을 jsp 쪽으로 전달 
+		model.addAttribute("userGrade", userGrade);
 		model.addAttribute("userList", userList);
 		//view 폴더에서 admin/users/list.jsp 파일을 찾으라는 의미 
 		return "admin/user/list";
 	}
 	
 	@RequestMapping(value ="/admin/user/view", method = RequestMethod.GET)
-	public String view(@RequestParam("idx") int idx, Locale locale, Model model) {
+	public String view(@RequestParam("idx") int idx, Locale locale, Model model, HttpSession session) {
 		UserVO user = userDAO.select(idx);
 		model.addAttribute("userView", user);
+		
+		int nowUserIdx = (int)session.getAttribute("sessionUserIdx");
+		UserVO userGrade = userDAO.select(nowUserIdx);
+		model.addAttribute("userGrade", userGrade);
 		return "admin/user/view";
 	}
 	
 	@RequestMapping(value ="/admin/user/edit", method = RequestMethod.GET)
-	public String edit(@RequestParam("idx") int idx, Locale locale, Model model) {
+	public String edit(@RequestParam("idx") int idx, Locale locale, Model model, HttpSession session) {
 		UserVO user = userDAO.select(idx);
 		model.addAttribute("userView", user);
+		
+		int nowUserIdx = (int)session.getAttribute("sessionUserIdx");
+		UserVO userGrade = userDAO.select(nowUserIdx);
+		model.addAttribute("userGrade", userGrade);
 		return "admin/user/edit";
 	}
 	
 	@RequestMapping(value ="/admin/user/editDo", method = RequestMethod.POST)
-	public String userEdit(@RequestParam("idx") int idx, @RequestParam("userName") String userName, @RequestParam("email") String email, @RequestParam("changePwd") String changePwd, Locale locale, Model model) {
+	public String userEdit(@RequestParam("idx") int idx, @RequestParam("userName") String userName, @RequestParam("email") String email, @RequestParam("changePwd") String changePwd, @RequestParam("userPwd") String userPwd, @RequestParam("userGrade") int userGrade, Locale locale, Model model) {
 		UserVO userVO = new UserVO();
 		
 		//edit 페이지에서 넘어온 값 VO에 세팅 
@@ -75,7 +88,10 @@ public class UserController {
 		if(changePwd != null ) {
 			userVO.setuserPwd(changePwd);
 		}
+		userVO.setuserPwd(userPwd);
 		userVO.setEmail(email);
+		System.out.println("바꿀 userGrade는 : "+userGrade);
+		userVO.setUserGrade(userGrade);
 		
 		//VO를 인자값으로 넘겨주며 dao의 update 메써드 실행 
 		userDAO.update(userVO);
@@ -85,12 +101,18 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/admin/user/insert", method=RequestMethod.GET)
-	public String insert(Locale locale, Model model) {
+	public String insert(Locale locale, Model model, HttpSession session) {
+		//user idx를 가지고 오기 위한 select
+		int idx = (int) session.getAttribute("sessionUserIdx");
+		UserVO userGrade = userDAO.select(idx);
+		
+		//가져온 값을 jsp 쪽으로 전달 
+		model.addAttribute("userGrade", userGrade);
 		return "/admin/user/insert";
 	}
 	
 	@RequestMapping(value ="/admin/user/insertDo", method = RequestMethod.POST)
-	public String userInsert(@RequestParam("userId") String userId, @RequestParam("userName") String userName, @RequestParam("email") String email, @RequestParam("userPwd") String userPwd, Locale locale, Model model) {
+	public String userInsert(@RequestParam("userId") String userId, @RequestParam("userName") String userName, @RequestParam("email") String email, @RequestParam("userPwd") String userPwd, @RequestParam("userGrade") int userGrade, Locale locale, Model model) {
 		UserVO userVO = new UserVO();
 		
 		//insert 페이지에서 넘어온 값 VO에 세팅 
@@ -98,6 +120,7 @@ public class UserController {
 		userVO.setuserName(userName);
 		userVO.setuserPwd(userPwd);
 		userVO.setEmail(email);
+		userVO.setUserGrade(userGrade);
 		
 		//VO를 인자값으로 넘겨주며 dao의 update 메써드 실행 
 		userDAO.insert(userVO);

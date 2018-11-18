@@ -13,14 +13,14 @@
 		<result property="userGrade" column="user_grade"></result>
 	</resultMap>
 	<insert id="insert" parameterType="com.mia.miablog.vo.UserVO">
-		INSERT INTO user ( user_id, email, user_name, user_pwd, reg_date )
-			VALUES ( #{userId}, #{email}, #{userName}, #{userPwd}, NOW() )
+		INSERT INTO user ( user_id, email, user_name, user_pwd, reg_date, user_grade )
+			VALUES ( #{userId}, #{email}, #{userName}, #{userPwd}, NOW(), #{userGrade} )
 	</insert>
 	<select id="selectList" parameterType="java.util.HashMap" resultMap="resultUserVO">
 		SELECT * FROM user
 	</select>
 	<update id="update" parameterType="com.mia.miablog.vo.UserVO">
-		UPDATE user SET user_name = #{userName}, user_pwd = #{userPwd}, email=#{email}  WHERE idx = #{idx}
+		UPDATE user SET user_name = #{userName}, user_pwd = #{userPwd}, email=#{email}, user_grade=#{userGrade}  WHERE idx = #{idx}
 	</update>
 	<delete id="delete" parameterType="com.mia.miablog.vo.UserVO">
 		DELETE FROM user WHERE idx = #{idx}

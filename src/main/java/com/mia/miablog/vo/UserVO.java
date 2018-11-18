@@ -7,7 +7,6 @@ public class UserVO {
 	private String userName;
 	private String userPwd;
 	private String regDate;
-	
 	private int userGrade;
 	
 	public int getIdx() {

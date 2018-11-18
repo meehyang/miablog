@@ -35,7 +35,7 @@
                     <a href="../board/list"><i class="fa fa-table fa-fw"></i> 게시판</a>
                 </li>
                 <li>
-                    <a href="../user/list"><i class="fa fa-edit fa-fw"></i> 고객관리</a>
+                    <a href="../user/list"><i class="fa fa-edit fa-fw"></i> 회원관리</a>
                 </li>
             </ul>
         </div>

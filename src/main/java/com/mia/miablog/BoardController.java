@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mia.miablog.dao.AttachfileDAO;
 import com.mia.miablog.dao.BoardDAO;
+import com.mia.miablog.dao.UserDAO;
 import com.mia.miablog.vo.AttachfileVO;
 import com.mia.miablog.vo.BoardVO;
 import com.mia.miablog.vo.UserVO;
@@ -53,6 +54,7 @@ public class BoardController {
 //			return "redirect:/admin/login/login";
 //		}
 		List<BoardVO> boardList = boardDAO.selectList();
+		
 		model.addAttribute("boardList", boardList);
 		return "admin/board/list";
 	}

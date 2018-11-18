@@ -14,19 +14,14 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- MetisMenu CSS -->
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
     <!-- DataTables CSS -->
     <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
     <!-- DataTables Responsive CSS -->
     <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -46,8 +41,10 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">고객 목록
-                    <a class="btn btn-success" href="../user/insert">회원등록</a>
+                    <h1 class="page-header">회원 리스트 
+                    <c:if test="${userGrade.userGrade eq 1}">
+					     <a class="btn btn-success" href="../user/insert">회원등록</a>
+					</c:if>
                     </h1>
                 </div>
                 <!-- /.col-lg-12 -->

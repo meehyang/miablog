@@ -14,7 +14,9 @@
 		<result property="nextIdx" column="next_idx"></result>
 	</resultMap>
 	<select id="selectList" parameterType="java.util.HashMap" resultMap="resultBoardVO">
-		select b.*, u.user_name, a.attach_file from (miablog.board as b left outer join miablog.user as u on b.user_idx=u.idx) left join miablog.attach_file as a on a.board_idx=b.idx;
+		select b.*, u.user_name, a.attach_file 
+		from (miablog.board as b left outer join miablog.user as u on b.user_idx=u.idx) left join miablog.attach_file as a on a.board_idx=b.idx 
+		ORDER BY b.idx DESC;
 	</select>
 	<select id="select" parameterType="int" resultMap="resultBoardVO">
 		SELECT b.*, u.user_name FROM miablog.board AS b LEFT OUTER JOIN miablog.user AS u ON b.user_idx=u.idx WHERE b.idx = #{idx}; 

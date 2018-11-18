@@ -42,8 +42,8 @@ public class LoginController {
 		if(session.getAttribute("sessionUserName") == null || session.getAttribute("sessionUserIdx") == null) {
 			return "admin/login/login";
 		}else {
-			return "redirect:/admin/board/list";
 		}
+		return "redirect:/admin/board/list";
 	}
 	
 	//입력값 검증은 프론트단에서 하는 게 나을듯,,,
@@ -64,8 +64,8 @@ public class LoginController {
 			if(returnUserVO == null) {
 				return "redirect:/admin/login/login";
 			}else {
-				if(returnUserVO.getuserPwd().equals(userPwd) && returnUserVO.getuserId().equals(userId) && returnUserVO.getUserGrade()==1) {
-					//db의 정보와 비교해 아이디-패스워드 정보가 일치할 경우 & 유저권한이 1일 때  세션에 유저 이름 저장
+				if(returnUserVO.getuserPwd().equals(userPwd) && returnUserVO.getuserId().equals(userId) && (returnUserVO.getUserGrade()==1 || returnUserVO.getUserGrade()==2)) {
+					//db의 정보와 비교해 아이디-패스워드 정보가 일치할 경우 & 유저권한이 0또는 1일 때  세션에 유저 이름 저장
 					session.setAttribute("sessionUserName", returnUserVO.getuserName());
 					session.setAttribute("sessionUserIdx", returnUserVO.getIdx());
 				}else {

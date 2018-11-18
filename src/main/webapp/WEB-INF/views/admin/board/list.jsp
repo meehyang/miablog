@@ -88,12 +88,12 @@
 	                                        </td>
 	                                        <td>
 	                                        	<c:choose>
-													<c:when test="${fn:length(boardVO.content) gt 51}">
-														<c:out value="${fn:substring(boardVO.content, 0, 50)}">...
+													<c:when test='${fn:length(boardVO.content) gt 51}'>
+														<c:out value='${fn:substring(boardVO.content, 0, 50)}'>...
 														</c:out>
 													</c:when>
 													<c:otherwise>
-														<c:out value="${boardVO.content}">...
+														<c:out value='${boardVO.content.replaceAll("\\\<.*?\\\>","")}'>...
 														</c:out>
 													</c:otherwise>
 												</c:choose>

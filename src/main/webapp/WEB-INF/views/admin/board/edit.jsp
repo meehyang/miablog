@@ -28,6 +28,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+	<script>tinymce.init({ selector:'textarea' });</script>
 </head>
 
 <body>
@@ -52,37 +54,39 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <form role="form" name="frm" method="post" action="editDo" enctype="multipart/form-data">
-                                    	<input type="hidden" name="idx" value="${boardView.idx}">
-                                        <div class="form-group">
-                                            <label>제목</label>
-                                            <input type="text" class="form-control" name="title" value="${boardView.title}">
-                                            <label>유저이름 </label>
-                                            <input type="text" class="form-control" value="${boardView.userName}" name="userName">
-                                            <p style="margin-top:10px;"><label>카테고리</label></p>
-	                                        <select name="cate" class="form-control">
-	                                        	<option ${boardView.cate == 'music' ? 'selected="selected"':''}>music</option>
-	                                        	<option ${boardView.cate == 'life' ? 'selected="selected"':''}>life</option>
-	                                        	<option ${boardView.cate == 'people' ? 'selected="selected"':''}>people</option>
-	                                        	<option ${boardView.cate == 'trip' ? 'selected="selected"':''}>trip</option>
-	                                        	<option ${boardView.cate == 'etc' ? 'selected="selected"':''}>etc</option>
-	                                        </select>
-                                            <c:set var="attachFile" value="${attachView.attachFile }" />
-											<c:if test="${!empty attachFile}">
-											    <p><label>첨부파일</label></p>
-												<input type="file" class="form-control" name="attachFileOrg">
-												<img src="../../${attachView.attachFile }" width="300px;">
-											</c:if>
-											<p><label>내용</label></p>
-											<textarea name="content" class="form-control" id="summernote">${boardView.content}</textarea>
-                                            <p><label>작성일 </label></p>
-                                            <p class=help-block">${boardView.insertDate }</p>
-                                        </div>
-                                        <button class="btn btn-info" type="submit">완료</button>
-                                    </form>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
+								<form role="form" name="frm" method="post" action="editDo" enctype="multipart/form-data">
+								<div class="col-lg-6">
+									<input type="hidden" name="idx" value="${boardView.idx}">
+									<div class="form-group">
+										<label>제목</label>
+										<input type="text" class="form-control" name="title" value="${boardView.title}">
+										<label>유저이름 </label>
+										<input type="text" class="form-control" value="${boardView.userName}" name="userName">
+										<p style="margin-top:10px;"><label>카테고리</label></p>
+										<select name="cate" class="form-control">
+											<option ${boardView.cate == 'music' ? 'selected="selected"':''}>music</option>
+											<option ${boardView.cate == 'life' ? 'selected="selected"':''}>life</option>
+											<option ${boardView.cate == 'people' ? 'selected="selected"':''}>people</option>
+											<option ${boardView.cate == 'trip' ? 'selected="selected"':''}>trip</option>
+											<option ${boardView.cate == 'etc' ? 'selected="selected"':''}>etc</option>
+										</select>
+										<c:set var="attachFile" value="${attachView.attachFile }" />
+										<c:if test="${!empty attachFile}">
+										    <p><label>첨부파일</label></p>
+											<input type="file" class="form-control" name="attachFileOrg">
+											<img src="../../${attachView.attachFile }" width="300px;">
+										</c:if>
+									</div>
+								</div>
+								<div class="col-lg-12">
+									<p><label>내용</label></p>
+									<textarea name="content" style="width:100%;">${boardView.content}</textarea>
+									<p style="margin-top:10px;"><label>작성일 </label></p>
+									<p class=help-block">${boardView.insertDate}</p>
+									<button class="btn btn-info" type="submit">완료</button>
+								</div>
+								<!-- /.col-lg-6 (nested) -->
+								</form>
                             </div>
                             <!-- /.row (nested) -->
                         </div>

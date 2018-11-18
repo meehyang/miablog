@@ -70,7 +70,7 @@
                                            		 <img src="../../${attachView.attachFile }" width="200px;">
 											</c:if>
 											<p class="help-block"><label>내용</label></p>
-											<textarea class="form-control" readonly="readonly">${boardView.content}</textarea>
+											<div><c:out value='${boardView.content.replaceAll("\\\<.*?\\\>","")}' /></div>
                                             <p class="help-block"><label>작성일 </label></p>
                                             <p class=help-block">${boardView.insertDate }</p>
                                         </div>
